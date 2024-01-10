@@ -1,0 +1,64 @@
+#include<stdio.h>
+#define MAX 5
+struct stack
+{
+	int a[MAX];
+	int top;
+	}s;
+	void init(struct stack)
+	{
+	s.top=-1;
+	}
+	int isfull()
+	{
+	if(s.top==MAX-1)
+	return 1;
+	else
+	return 0;
+	}
+	void push(struct stack ,int num)
+	{
+	if(isfull())
+	printf("stack full don't push:");
+	else
+	{
+	s.top++;
+	s.a[s.top]=num;
+	}
+}
+	void disp(struct stack)
+	{
+	int i;
+	for(i=0;i<=s.top;i++)
+	{
+	printf("%d\t",s.a[i]);
+	}
+}
+	int main()
+	{
+	int i,n,num;
+	struct stack s1,s2,temp;
+	init(s1);
+	init(s2);
+	init(temp);
+	printf("enter limit of stack:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	printf("enter val:");
+	scanf("%d",&num);
+	push(s1,num);
+	}
+	for(i=s1.top;i>0;i--)
+	{
+	push(temp,s1.a[i]);
+	}
+	for(i=temp.top;i>0;i--)
+	{
+	push(s2,temp.a[i]);
+	}
+	printf("\n display original stack:");
+	disp(s1);
+	printf("\n display copy stack");
+	disp(s2);
+	}
